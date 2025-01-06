@@ -1,0 +1,131 @@
+﻿@page "/giris"
+@model AdaKurumsal.Pages.Account.LoginModel
+@{
+	Layout = "";
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="Description" content="">
+	<meta name="Author" content="Tasarım Balonu">
+	<!-- Title -->
+	<title> Inside Medikal - Website Admin Paneli </title>
+
+	<!-- Favicon -->
+	<link rel="icon" href="~/admin-assets/img/brand/favicon.png" type="image/x-icon">
+
+	<!-- Bootstrap css -->
+	<link href="~/admin-assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" id="style">
+
+	<!-- Icons css -->
+	<link href="~/admin-assets/css/icons.css" rel="stylesheet">
+
+	<!-- Style css -->
+	<link href="~/admin-assets/css/style.css" rel="stylesheet">
+	<link href="~/admin-assets/css/plugins.css" rel="stylesheet">
+
+	<!-- Animations css -->
+	<link href="~/admin-assets/css/animate.css" rel="stylesheet">
+
+</head>
+<body>
+	<!-- Loader -->
+	<div id="global-loader">
+		<img src="~/admin-assets/img/loaders/loader-4.svg" class="loader-img" alt="Loader">
+	</div>
+	<!-- /Loader -->
+
+	<div class="square-box">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+
+	<!-- page -->
+	<div class="page login-img">
+
+		<!-- main-signin-wrapper -->
+		<div class="">
+			<div class="my-auto page page-h">
+				<div class="main-signin-wrapper">
+					<div class="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+						<div class="text-center mb-3"> <h3 class="text-white"> Inside Medikal <br />Website Yönetim Paneli</h3> </div>
+						<div class="card">
+							<div class="card-body p-5">
+								<div class="main-signin-header">
+									<div class="">
+										<h2>Yönetici Girişi</h2>
+										<h4 class="text-start">Kullanıcı bilgilerinizi giriniz</h4>
+										<form method="POST">
+
+											<div class="form-group text-start">
+												<label>E-mail</label>
+												<input class="form-control" asp-for="bilgi.Email" placeholder="E-mail" type="text">
+											</div>
+											<div class="form-group text-start">
+												<label>Şifre</label>
+												<input class="form-control" placeholder="Şifre" asp-for="bilgi.Sifre" type="password">
+											</div>
+
+											<div asp-validation-summary="All"></div>
+
+											<button type="submit" class="btn ripple btn-primary btn-block">Giriş</button>
+
+											<div></div>
+										</form>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- page closed -->
+	<!-- /main-signin-wrapper -->
+	<!-- JQuery min js -->
+	<script src="~/admin-assets/plugins/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Bundle js -->
+	<script src="~/admin-assets/plugins/bootstrap/popper.min.js"></script>
+	<script src="~/admin-assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Ionicons js -->
+	<script src="~/admin-assets/plugins/ionicons/ionicons.js"></script>
+
+	<!-- Moment js -->
+	<script src="~/admin-assets/plugins/moment/moment.js"></script>
+
+	<!-- Eva-icons js -->
+	<script src="~/admin-assets/js/eva-icons.min.js"></script>
+
+	<!--themecolor js-->
+	<script src="~/admin-assets/js/themecolor.js"></script>
+
+	<!--swither-styles js-->
+	<script src="~/admin-assets/js/swither-styles.js"></script>
+
+	<!-- Custom js -->
+	<script src="~/admin-assets/js/custom.js"></script>
+</body>
+</html>

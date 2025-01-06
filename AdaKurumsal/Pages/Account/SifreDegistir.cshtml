@@ -1,0 +1,88 @@
+﻿@page "/yonetim/sifre-degistir"
+@model AdaKurumsal.Pages.Account.SifreDegistirModel
+@{
+    Layout = "Admin_Layout";
+}
+<!-- breadcrumb -->
+<div class="breadcrumb-header justify-content-between">
+    <div>
+        <h4 class="content-title mb-2">Profil</h4>
+    </div>
+    <div class="d-flex my-auto">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Profil</a></li>
+                <li class="breadcrumb-item active " aria-current="page">Şifre Değiştir</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- /breadcrumb -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Şifre Değiştir </h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed">
+                    <div class="pb-2">
+                        <label>Yeni Şifre</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fe fe-type"></i></span>
+                            </div><input asp-for="YeniSifre" class="form-control" placeholder="Yeni Şifre" type="password" required>
+                        </div>
+                    </div>
+                    <div class="pb-2">
+                        <label>Şifre Tekrar</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fe fe-type"></i></span>
+                            </div><input asp-for="SifreTekrar" class="form-control" placeholder="Şifre Tekrar" type="password" required>
+                        </div>
+                    </div>
+                    <div class="pb-2 text-end">
+                        <input type="submit" class="btn btn-primary" value="Kaydet" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section customscripts {
+    <script>
+        completed = function (xhr) {
+
+            var data = JSON.parse(xhr.responseText);
+
+
+            if (data.durum) {
+
+                let toast = {
+                    title: "BAŞARILI",
+                    message: data.mesaj,
+                    status: TOAST_STATUS.SUCCESS,
+                    timeout: 10000
+                }
+                Toast.create(toast);
+            }
+            if (!data.durum) {
+
+                let toast = {
+                    title: "HATA",
+                    message: data.mesaj,
+                    status: TOAST_STATUS.ERROR,
+                    timeout: 10000
+                }
+                Toast.create(toast);
+            }
+        };
+
+
+
+
+    </script>
+}
