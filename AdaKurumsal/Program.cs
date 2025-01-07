@@ -1,7 +1,10 @@
 using AdaKurumsal.DataLayer;
 using AdaKurumsal.Middlewares;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
+
 builder.Services.AddDbContext<EFContext>();
 
 // Add services to the container.
@@ -22,7 +25,17 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+var cultures = new List<CultureInfo> {
+    new CultureInfo("en"),
+    new CultureInfo("tr")
+};
+app.UseRequestLocalization();
+//app.UseRequestLocalization(options =>
+//{
+//    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("tr-TR");
+//    options.SupportedCultures = cultures;
+//    options.SupportedUICultures = cultures;
+//});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

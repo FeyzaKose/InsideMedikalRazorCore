@@ -106,29 +106,29 @@
                         <li class="top-home-li">
                             <ul class="top-dropdown">
                                 <li class="top-dropdown-li notification-title">
-                                   @*  <a href="~/@LanguageHandler.getLanguage()/@Kit.convertLink(WebUI.Resource.menu.Hakkimizda)">@WebUI.Resource.menu.Hakkimizda</a> *@
-                                   <a href="#">Hakkımızda</a>
+                                   
+                                    <a href="#">@Localizer["hakkimizda"]</a>
                                 </li>
                                 <li class="top-dropdown-li notification-title">
                                     @* <a href="~/@LanguageHandler.getLanguage()/@Kit.convertLink(WebUI.Resource.menu.Bayilerimiz)">@WebUI.Resource.menu.Bayilerimiz</a> *@
-                                    <a href="#">Bayilerimiz</a>
+                                    <a href="#">@Localizer["bayilerimiz"]</a>
                                 </li>
                                 <li class="top-dropdown-li notification-title">
                                   @*   <a href="~/@LanguageHandler.getLanguage()/@Kit.convertLink(WebUI.Resource.menu.Iletisim)">@WebUI.Resource.menu.Iletisim</a> *@
-                                    <a href="#">İletişim</a>
+                                    <a href="#">@Localizer["iletisim"]</a>
                                 </li>
 
 
                                 <!-- currency start -->
-                               @*  <li class="top-dropdown-li">
-                                    <a href="javascript:void(0)">@LanguageHandler.getLanguage().ToUpper()</a>
+                                <li class="top-dropdown-li">
+                                    <a href="javascript:void(0)">Dil</a>
                                     <i class="ion-ios-arrow-down"></i>
                                     <ul class="currency">
-                                        <li><a href="@Url.Action("change", "Language", new { @languageSelect = "tr",@returnUrl=Request.RawUrl,Area = "" })">TR</a></li>
-                                        <li><a href="@Url.Action("change", "Language", new { @languageSelect = "en",@returnUrl=Request.RawUrl,Area = "" })">EN</a></li>
+                                        <li><a href="/Lang?culture=tr">TR</a></li>
+                                        <li><a href="/Lang?culture=en">EN</a></li>
 
                                     </ul>
-                                </li> *@
+                                </li>
                                 <!-- currency end -->
                             </ul>
                         </li>
