@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Globalization;
 
 namespace AdaKurumsal.Pages.Site
 {
@@ -7,6 +7,7 @@ namespace AdaKurumsal.Pages.Site
     {
         public void OnGet()
         {
+            ViewData["Title"] = CultureInfo.CurrentCulture.TwoLetterISOLanguageName; ;
         }
     }
 }

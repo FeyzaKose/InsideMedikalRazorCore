@@ -1,4 +1,6 @@
-﻿namespace AdaKurumsal.Middlewares
+﻿using Microsoft.AspNetCore.Localization;
+
+namespace AdaKurumsal.Middlewares
 {
     public class LanguageRedirectMiddleware
     {
@@ -27,11 +29,24 @@
                         var userLanguage = languages[0].Split('-')[0]; // İlk dili al, örn: "en-US" -> "en"
                         if (userLanguage == "tr")
                         {
+                            context.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+                  CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("tr")),
+                  new CookieOptions { Expires = DateTime.Now.AddDays(1) }
+                  );
+
                             context.Response.Redirect("/tr");
+
                             return;
                         }
                         else
                         {
+                            context.Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+                  CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("en")),
+                  new CookieOptions { Expires = DateTime.Now.AddDays(1) }
+                  );
+
                             context.Response.Redirect("/en");
                             return;
                         }

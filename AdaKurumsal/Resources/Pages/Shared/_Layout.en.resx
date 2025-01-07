@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="bayilermiz" xml:space="preserve">
+  <data name="bayilerimiz" xml:space="preserve">
     <value>Our partners</value>
+  </data>
+  <data name="dil" xml:space="preserve">
+    <value>en</value>
   </data>
   <data name="hakkimizda" xml:space="preserve">
     <value>About us</value>
+  </data>
+  <data name="hakkimizdaLink" xml:space="preserve">
+    <value>about-us</value>
   </data>
   <data name="iletisim" xml:space="preserve">
     <value>Contact</value>

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdaKurumsal.Pages
@@ -13,7 +14,11 @@ namespace AdaKurumsal.Pages
 
         public void OnGet(string dil)
         {
-
+            Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+                  CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(dil)),
+                  new CookieOptions { Expires = DateTime.Now.AddDays(1) }
+                  );
         }
     }
 }

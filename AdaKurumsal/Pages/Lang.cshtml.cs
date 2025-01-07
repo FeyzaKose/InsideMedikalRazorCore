@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Localization;
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdaKurumsal.Pages
@@ -18,6 +18,12 @@ namespace AdaKurumsal.Pages
             }
 
             string returnUrl = Request.Headers["Referer"].ToString() ?? "/";
+            string urlDili = Path.GetFileName(new Uri(returnUrl).AbsolutePath);
+            string domain = new Uri(returnUrl).GetLeftPart(UriPartial.Authority);
+            if (urlDili == "tr" || urlDili == "en")
+            {
+                returnUrl = domain + "/" + culture;
+            }
 
             Response.Redirect(returnUrl);
         }
