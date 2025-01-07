@@ -72,7 +72,7 @@ namespace AdaKurumsal.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -94,7 +94,7 @@ namespace AdaKurumsal.Migrations
                         {
                             Id = 1,
                             Email = "kose.feyza@gmail.com",
-                            Password = "$2a$11$DeSWZn7D6lGubLLnFI0AgOv4SGSSRZK8C3yVysQvUW7r9jAXYfVqO",
+                            Password = "$2a$11$2Yccdvm4p/n8KEQPuZVxJe5wLCR4KuvtwJqYEAP9DvOaATo8RNPYS",
                             UserName = "Feyza Köse",
                             isActive = true,
                             isConfirm = true

@@ -13,7 +13,7 @@ namespace AdaKurumsal.Models
 
 
         [Required(ErrorMessage = "Şifre alanı boş bırakılamaz")]
-        [StringLength(80, MinimumLength = 6, ErrorMessage = "Şifre en az 6 karakter olmalı")]
+        [StringLength(15, MinimumLength = 6, ErrorMessage = "Şifre en az 6 karakter olmalı")]
         [MaxLength(15, ErrorMessage = "Şifre alanı en fazla 80 karakter olabilir.")]
         [Column(TypeName = "nvarchar(80)")]
         //Hash lenmiş olarak kayıt edilir ve 60 karakter uzunlupundadır.

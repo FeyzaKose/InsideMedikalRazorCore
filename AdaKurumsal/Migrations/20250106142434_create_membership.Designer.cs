@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdaKurumsal.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20250106132132_appuser")]
-    partial class appuser
+    [Migration("20250106142434_create_membership")]
+    partial class create_membership
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,7 +75,7 @@ namespace AdaKurumsal.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -97,7 +97,7 @@ namespace AdaKurumsal.Migrations
                         {
                             Id = 1,
                             Email = "kose.feyza@gmail.com",
-                            Password = "$2a$11$DeSWZn7D6lGubLLnFI0AgOv4SGSSRZK8C3yVysQvUW7r9jAXYfVqO",
+                            Password = "$2a$11$2Yccdvm4p/n8KEQPuZVxJe5wLCR4KuvtwJqYEAP9DvOaATo8RNPYS",
                             UserName = "Feyza Köse",
                             isActive = true,
                             isConfirm = true

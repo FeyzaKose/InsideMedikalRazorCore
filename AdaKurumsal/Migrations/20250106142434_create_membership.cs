@@ -7,7 +7,7 @@
 namespace AdaKurumsal.Migrations
 {
     /// <inheritdoc />
-    public partial class appuser : Migration
+    public partial class create_membership : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,7 +48,7 @@ namespace AdaKurumsal.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(80)", maxLength: 15, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     isActive = table.Column<bool>(type: "bit", nullable: false),
                     isConfirm = table.Column<bool>(type: "bit", nullable: false)
@@ -75,7 +75,7 @@ namespace AdaKurumsal.Migrations
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "Id", "Email", "Password", "UserName", "isActive", "isConfirm" },
-                values: new object[] { 1, "kose.feyza@gmail.com", "$2a$11$DeSWZn7D6lGubLLnFI0AgOv4SGSSRZK8C3yVysQvUW7r9jAXYfVqO", "Feyza Köse", true, true });
+                values: new object[] { 1, "kose.feyza@gmail.com", "$2a$11$2Yccdvm4p/n8KEQPuZVxJe5wLCR4KuvtwJqYEAP9DvOaATo8RNPYS", "Feyza Köse", true, true });
         }
 
         /// <inheritdoc />
