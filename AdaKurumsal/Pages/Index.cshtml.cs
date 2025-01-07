@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdaKurumsal.Pages
@@ -12,7 +11,7 @@ namespace AdaKurumsal.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet(string dil)
         {
 
         }

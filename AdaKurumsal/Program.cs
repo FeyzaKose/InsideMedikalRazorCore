@@ -1,4 +1,5 @@
 using AdaKurumsal.DataLayer;
+using AdaKurumsal.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<EFContext>();
@@ -28,7 +29,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseMiddleware<LanguageRedirectMiddleware>();
 app.MapRazorPages();
 
 app.Run();
