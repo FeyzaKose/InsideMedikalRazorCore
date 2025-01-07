@@ -1,51 +1,146 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AdaKurumsal</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/AdaKurumsal.styles.css" asp-append-version="true" />
-</head>
+   
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- title -->
+        <title>Inside Medikal</title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="Feyza Köse - Tasarım Balonu - https://tasarimbalonu.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/favicon" href="~/img/favicon.png">
+        <!-- bootstrap -->
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
+
+        <link href="~/assets/libs/toastr/toastr.min.css" rel="stylesheet" />
+        <!-- simple-line icon -->
+        <link rel="stylesheet" type="text/css" href="~/css/simple-line-icons.css">
+        <!-- font-awesome icon -->
+        <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css">
+        <!-- themify icon -->
+        <link rel="stylesheet" type="text/css" href="~/css/themify-icons.css">
+        <!-- ion icon -->
+        <link rel="stylesheet" type="text/css" href="~/css/ionicons.min.css">
+        <!-- owl slider -->
+        <link rel="stylesheet" type="text/css" href="~/css/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="~/css/owl.theme.default.min.css">
+        <!-- swiper -->
+        <link rel="stylesheet" type="text/css" href="~/css/swiper.min.css">
+        <!-- animation -->
+        <link rel="stylesheet" type="text/css" href="~/css/animate.css">
+        <!-- style -->
+        <link href="~/css/style.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="~/css/style4.css">
+
+        <link rel="stylesheet" type="text/css" href="~/css/responsive4.css">
+        <link href="~/css/custom.css" rel="stylesheet" />
+        <link href="~/css/loader.css" rel="stylesheet" />
+        @RenderSection("styles", false)
+        <style>
+            @@media(max-width: 991px) {
+                .grid-4-product .grid-pro ul.grid-product li.grid-items {
+                    width: calc(50% - 30px);
+                    margin-left: 30px;
+                    margin-bottom: 15px;
+                }
+
+                    .grid-4-product .grid-pro ul.grid-product li.grid-items .pro-price {
+                        margin-bottom: 15px;
+                    }
+
+                    .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img a {
+                        text-align: center;
+                    }
+
+                    .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img img {
+                        margin: 0 auto;
+                    }
+            }
+
+            @@media(max-width: 767px) {
+                .grid-4-product .grid-pro ul.grid-product li.grid-items {
+                    width: 100%;
+                    margin-left: 0px;
+                    margin-bottom: 15px;
+                }
+
+                    .grid-4-product .grid-pro ul.grid-product li.grid-items .pro-price {
+                        margin-bottom: 15px;
+                    }
+
+                    .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img a {
+                        text-align: center;
+                    }
+
+                    .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img img {
+                        margin: 0 auto;
+                    }
+            }
+        </style>
+        @RenderSection("googleScripts", false);
+    </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">AdaKurumsal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+    <div class="loading" id="loading" style="display:none">Loading&#8230;</div>
+
+    <!-- top notificationbr start -->
+    <section class="top-4">
+        <div class="container">
+            <div class="row ">
+                <div class="col">
+                    <ul class="top-home">
+                        <li class="top-home-li t-content">
+                            <!-- information start -->
+                            <div class="top-content">
+                                <ul class="top-contect">
+                                    <li><a href="#"><i class="ti-mobile"></i> (0362) 437 37 70</a></li>
+                                    <li><a href="#"><i class="ti-email"></i> info@insidemedikal.com</a></li>
+                                </ul>
+                            </div>
+                            <!-- information end -->
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <li class="top-home-li">
+                            <ul class="top-dropdown">
+                                <li class="top-dropdown-li notification-title">
+                                   @*  <a href="~/@LanguageHandler.getLanguage()/@Kit.convertLink(WebUI.Resource.menu.Hakkimizda)">@WebUI.Resource.menu.Hakkimizda</a> *@
+                                   <a href="#">Hakkımızda</a>
+                                </li>
+                                <li class="top-dropdown-li notification-title">
+                                    @* <a href="~/@LanguageHandler.getLanguage()/@Kit.convertLink(WebUI.Resource.menu.Bayilerimiz)">@WebUI.Resource.menu.Bayilerimiz</a> *@
+                                    <a href="#">Bayilerimiz</a>
+                                </li>
+                                <li class="top-dropdown-li notification-title">
+                                  @*   <a href="~/@LanguageHandler.getLanguage()/@Kit.convertLink(WebUI.Resource.menu.Iletisim)">@WebUI.Resource.menu.Iletisim</a> *@
+                                    <a href="#">İletişim</a>
+                                </li>
+
+
+                                <!-- currency start -->
+                               @*  <li class="top-dropdown-li">
+                                    <a href="javascript:void(0)">@LanguageHandler.getLanguage().ToUpper()</a>
+                                    <i class="ion-ios-arrow-down"></i>
+                                    <ul class="currency">
+                                        <li><a href="@Url.Action("change", "Language", new { @languageSelect = "tr",@returnUrl=Request.RawUrl,Area = "" })">TR</a></li>
+                                        <li><a href="@Url.Action("change", "Language", new { @languageSelect = "en",@returnUrl=Request.RawUrl,Area = "" })">EN</a></li>
+
+                                    </ul>
+                                </li> *@
+                                <!-- currency end -->
+                            </ul>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - AdaKurumsal - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
-    </footer>
+    </section>
+    <!-- top notificationbr start -->
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+            @RenderBody()
+      
+    
 </body>
 </html>

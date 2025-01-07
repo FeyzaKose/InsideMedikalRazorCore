@@ -1,0 +1,308 @@
+﻿/* Banner grid css */
+.home5-grid-banner .organic-food-fresh-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .home5-grid-banner .organic-food-fresh-banner .offer-banner {
+        position: relative;
+        width: 33.33%;
+        margin-right: 30px;
+    }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner:last-child {
+            margin-right: 0px;
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover::before,
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            bottom: 10px;
+            left: 10px;
+            z-index: 9;
+            opacity: 0;
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover::before {
+            -webkit-transform: scale(1,0);
+            -o-transform: scale(1,0);
+            transform: scale(1,0);
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover::after {
+            -webkit-transform: scale(0,1);
+            -o-transform: scale(0,1);
+            transform: scale(0,1);
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover::before {
+            border-right: 1px solid #fff;
+            border-left: 1px solid #fff;
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover::after {
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner:hover a.banner-hover::before,
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner:hover a.banner-hover::after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover::before,
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover::after,
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner:hover a.banner-hover::before,
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner:hover a.banner-hover::after {
+            -webkit-transition: all 0.4s ease-in-out 0s;
+            -o-transition: all 0.4s ease-in-out 0s;
+            transition: all 0.4s ease-in-out 0s;
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner:hover a.banner-hover img {
+            -webkit-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover img,
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner:hover a.banner-hover img {
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            -o-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content {
+            position: absolute;
+            bottom: 50%;
+            right: 20px;
+            transform: translateY(50%);
+            width: 30%;
+            z-index: 3;
+        }
+
+            .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content span {
+                color: #999;
+                line-height: 1;
+                font-weight: 400;
+            }
+
+            .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content h2 {
+                color: #333;
+                margin-top: 7px;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content a {
+                color: #f5ab1e;
+                margin-top: 8px;
+                font-weight: 700;
+            }
+
+                .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content a:hover {
+                    color: #222;
+                }
+
+                .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content a i {
+                    margin-left: 2px;
+                }
+@media (max-width: 1199px) {
+    /* grid banner css */
+    .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content {
+        right: 15px;
+        width: 37%;
+    }
+}
+@media (max-width: 991px) {
+    /* grid banner css */
+    .home5-grid-banner .organic-food-fresh-banner .offer-banner {
+        margin-right: 15px;
+    }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content {
+            width: 48%;
+            right: 0px;
+        }
+
+            .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content h2 {
+                font-size: 15px;
+            }
+}
+@media (max-width: 767px) {
+    /* grid banner */
+    .home5-grid-banner .organic-food-fresh-banner {
+        flex-direction: column;
+    }
+
+        .home5-grid-banner .organic-food-fresh-banner .offer-banner {
+            width: 100%;
+            margin-right: 0px;
+            margin-bottom: 15px;
+        }
+
+            .home5-grid-banner .organic-food-fresh-banner .offer-banner:last-child {
+                margin-bottom: 0px;
+            }
+
+            .home5-grid-banner .organic-food-fresh-banner .offer-banner a.banner-hover img {
+                width: 100%;
+                height: 210px;
+                object-fit: cover;
+            }
+
+            .home5-grid-banner .organic-food-fresh-banner .offer-banner .banner-content {
+                width: 35%;
+            }
+}
+
+/* breadcrumb padding */
+.breadcrumb-t-padding {
+    padding-top: 30px;
+}
+
+.breadcrumb-b-padding {
+    padding-top: 30px;
+}
+
+.breadcrumb-tb-padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+    .breadcrumb-t-padding {
+        padding-top: 20px;
+    }
+
+    .breadcrumb-b-padding {
+        padding-bottom: 20px;
+    }
+
+    .breadcrumb-tb-padding {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+/* breadcrumb css */
+.about-breadcrumb .about-back {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: 5;
+}
+
+    .about-breadcrumb .about-back .about-l ul.about-link {
+        text-align: center;
+    }
+
+        .about-breadcrumb .about-back .about-l ul.about-link li.go-home a {
+            font-size: 18px;
+            color: #fff;
+            position: relative;
+            font-weight: 500;
+            padding-bottom: 10px;
+        }
+
+            .about-breadcrumb .about-back .about-l ul.about-link li.go-home a::after {
+                background-color: #fff;
+                content: "";
+                position: absolute;
+                bottom: -15px;
+                right: 0px;
+                left: 0px;
+                width: 3px;
+                height: 15px;
+                margin: 0 auto;
+            }
+
+        .about-breadcrumb .about-back .about-l ul.about-link li.about-p {
+            padding-top: 26px;
+        }
+
+            .about-breadcrumb .about-back .about-l ul.about-link li.about-p span {
+                font-size: 18px;
+                color: #fff;
+                font-weight: 500;
+            }
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #08728f;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+.searchPreview {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    background-color: #fff;
+    height: 350px;
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+    z-index:999;
+    overflow-y:scroll;
+    display:none;
+    transition:all 0.5s ease-out;
+    border-radius:10px;
+}
+.searchPreview ul{
+    width:100%;
+    padding:25px 10px;
+    padding-top:0;
+
+}
+    .searchPreview::-webkit-scrollbar {
+        width: 10px;
+    }
+
+/* Track */
+    .searchPreview::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+/* Handle */
+    .searchPreview::-webkit-scrollbar-thumb {
+        background: #08728f;
+    }
+
+    /* Handle on hover */
+        .searchPreview::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+.searchPreview ul li{
+    padding-bottom:10px;
+}
+.searchPreview ul li img {
+    width: 50px;
+    padding: 15px;
+    border: 1px solid #08728f;
+    margin-right:10px;
+}
+
