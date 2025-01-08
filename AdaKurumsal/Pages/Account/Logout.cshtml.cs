@@ -12,7 +12,7 @@ namespace AdaKurumsal.Pages.Account
         public IActionResult OnPost()
         {
             HttpContext.SignOutAsync();
-            return RedirectToPage("/index");
+            return Redirect("/yonetim");
         }
     }
 }

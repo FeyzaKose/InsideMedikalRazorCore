@@ -7,7 +7,7 @@
 namespace AdaKurumsal.Migrations
 {
     /// <inheritdoc />
-    public partial class create_membership : Migration
+    public partial class first_init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,6 +58,27 @@ namespace AdaKurumsal.Migrations
                     table.PrimaryKey("PK_AppUsers", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Iletisim",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Dil = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
+                    Telefon1 = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Telefon2 = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Email1 = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    Email2 = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    FooterAdresSatir = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: true),
+                    FooterAdresSatir2 = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: true),
+                    AdresSatir1 = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: true),
+                    AdresSatir2 = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Iletisim", x => x.Id);
+                });
+
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "RolName", "isActive" },
@@ -75,7 +96,7 @@ namespace AdaKurumsal.Migrations
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "Id", "Email", "Password", "UserName", "isActive", "isConfirm" },
-                values: new object[] { 1, "kose.feyza@gmail.com", "$2a$11$2Yccdvm4p/n8KEQPuZVxJe5wLCR4KuvtwJqYEAP9DvOaATo8RNPYS", "Feyza Köse", true, true });
+                values: new object[] { 1, "kose.feyza@gmail.com", "$2a$11$fTu9FYpZCFyCi65kwPqWAeNELjMOcK.3Hie0.kynBG2fy29zkfuhm", "Feyza Köse", true, true });
         }
 
         /// <inheritdoc />
@@ -89,6 +110,9 @@ namespace AdaKurumsal.Migrations
 
             migrationBuilder.DropTable(
                 name: "AppUsers");
+
+            migrationBuilder.DropTable(
+                name: "Iletisim");
         }
     }
 }

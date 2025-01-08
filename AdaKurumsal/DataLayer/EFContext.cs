@@ -1,4 +1,5 @@
 ﻿using AdaKurumsal.Models;
+using AdaKurumsal.Models.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -14,6 +15,9 @@ namespace AdaKurumsal.DataLayer
         public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
+
+
+        public DbSet<Iletisim> Iletisim { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -94,7 +94,7 @@ namespace AdaKurumsal.Migrations
                         {
                             Id = 1,
                             Email = "kose.feyza@gmail.com",
-                            Password = "$2a$11$2Yccdvm4p/n8KEQPuZVxJe5wLCR4KuvtwJqYEAP9DvOaATo8RNPYS",
+                            Password = "$2a$11$fTu9FYpZCFyCi65kwPqWAeNELjMOcK.3Hie0.kynBG2fy29zkfuhm",
                             UserName = "Feyza Köse",
                             isActive = true,
                             isConfirm = true
@@ -130,6 +130,56 @@ namespace AdaKurumsal.Migrations
                             UserId = 1,
                             isActive = true
                         });
+                });
+
+            modelBuilder.Entity("AdaKurumsal.Models.DataModels.Iletisim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdresSatir1")
+                        .HasMaxLength(75)
+                        .HasColumnType("nvarchar(75)");
+
+                    b.Property<string>("AdresSatir2")
+                        .HasMaxLength(75)
+                        .HasColumnType("nvarchar(75)");
+
+                    b.Property<string>("Dil")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
+
+                    b.Property<string>("Email1")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("Email2")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("FooterAdresSatir")
+                        .HasMaxLength(75)
+                        .HasColumnType("nvarchar(75)");
+
+                    b.Property<string>("FooterAdresSatir2")
+                        .HasMaxLength(75)
+                        .HasColumnType("nvarchar(75)");
+
+                    b.Property<string>("Telefon1")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Telefon2")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Iletisim");
                 });
 #pragma warning restore 612, 618
         }

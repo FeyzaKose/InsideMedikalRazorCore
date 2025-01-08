@@ -1,0 +1,403 @@
+﻿@page "/yonetim/iletisim"
+@model AdaKurumsal.Pages.Admin.IletisimInfo.IletisimModel
+@{
+    Layout = "Admin_Layout";
+}
+<div class="breadcrumb-header justify-content-between">
+    <div>
+        <h4 class="content-title mb-2">Iletisim</h4>
+    </div>
+    <div class="d-flex my-auto">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Iletisim Bilgileri</a></li>
+                <li class="breadcrumb-item active " aria-current="page">Güncelle</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="main-content-body">
+    <div class="row row-cards">
+        <div class="col-md-12">
+            <div class="card card-img-holder text-default bg-color">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="my-auto">
+                            <div class="circle-icon bg-primary text-center align-self-center shadow-primary"><img src="~/admin-assets/img/svgicons/circle.svg" alt="circle" class="card-img-absolute"><i class="bx bx-conversation tx-30 icon-user-bx text-white"></i></div>
+                        </div>
+                        <div class="project-content my-3">
+                            <h3 class="mb-0 tx-18">İletişim Bilgileri</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- dil -->
+    <div class="row row-cards">
+        <div class="col-md-12">
+            <div class="card card-img-holder text-default bg-color">
+                <div class="card-body">
+                    <nav class="nav nav-pills flex-column flex-md-row">
+                        <a class="nav-link" href="javascript:void(0);" ng-click="setLanguage('tr')" ng-class="{ 'active': selectedLanguage === 'tr' }">Türkçe</a>
+                        <a class="nav-link" href="javascript:void(0);" ng-click="setLanguage('en')" ng-class="{ 'active': selectedLanguage === 'en' }">İngilizce</a>
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div><!--end of dil-->
+    <form method="post" enctype="multipart/form-data" data-ajax="true" data-ajax-method="post" class="mb-5 pb-5" data-ajax-loading="#spinner-tr" data-ajax-complete="completed">
+        <input type="hidden" asp-for="@Model.dil" value="{{selectedLanguage}}" />
+        <div ng-show="selectedLanguage === 'tr'">
+            <input type="hidden" asp-for="@Model.iletisimTR.Id" />
+            <input type="hidden" asp-for="@Model.iletisimTR.Dil" />
+
+            <div class="row row-cards">
+                <div class="col-md-6">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-10"><i class="si si-phone"></i> Telefon Numaraları</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 pb-2">
+                                    <label>1. Hat</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimTR.Telefon1" class="form-control" placeholder="1. Hat" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <label>2. Hat</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimTR.Telefon2" class="form-control" placeholder="2. Hat" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-10"><i class="si si-envelope"></i> Email Adresleri</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 pb-2">
+                                    <label>1. Email</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimTR.Email1" class="form-control" placeholder="1. Email" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <label>2. Email</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimTR.Email2" class="form-control" placeholder="2. Email" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-10"><i class="si si-location-pin"></i> İletişim Sayfası Adres Bilgisi</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 pb-2">
+                                    <label>Adres 1. Satır</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimTR.AdresSatir1" class="form-control" placeholder="Adres 1. Satır" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <label>Adres 2. Satır</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimTR.AdresSatir2" class="form-control" placeholder="Adres 2. Satır" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-10"><i class="si si-map"></i> Footer Adres Bilgisi</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 pb-2">
+                                    <label>Adres 1. Satır</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimTR.FooterAdresSatir" class="form-control" placeholder="Adres 1. Satır" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <label>Adres 2. Satır</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimTR.FooterAdresSatir2" class="form-control" placeholder="Adres 2. Satır" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 pb-2 text-center">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="row justify-content-end">
+
+                            <div class="col-md-4">
+                                <li ng-repeat="err in listtr" style="list-style-type:none" ng-animate="'animate'">
+                                    <div class="alert alert-solid-danger text-start">
+                                        <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        {{ err }}
+
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="float-end">
+                                <button type="submit" class="btn btn-primary btn-lg">Kaydet <div id="spinner-tr" class="spinner-border spinner-border-sm text-secondary " style="display:none;" role="status"> <span class="visually-hidden">Loading...</span> </div></button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div> <!--end of selectedLanguage==tr  -->
+        <div ng-show="selectedLanguage === 'en'">
+            <input type="hidden" asp-for="@Model.iletisimEN.Id" />
+            <input type="hidden" asp-for="@Model.iletisimEN.Dil" />
+
+            <div class="row row-cards">
+                <div class="col-md-6">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-10"><i class="si si-phone"></i> Telefon Numaraları</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 pb-2">
+                                    <label>1. Hat</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimEN.Telefon1" class="form-control" placeholder="1. Hat" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <label>2. Hat</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimEN.Telefon2" class="form-control" placeholder="2. Hat" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-10"><i class="si si-envelope"></i> Email Adresleri</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 pb-2">
+                                    <label>1. Email</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimEN.Email1" class="form-control" placeholder="1. Email" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <label>2. Email</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimEN.Email2" class="form-control" placeholder="2. Email" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-10"><i class="si si-location-pin"></i> İletişim Sayfası Adres Bilgisi</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 pb-2">
+                                    <label>Adres 1. Satır</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimEN.AdresSatir1" class="form-control" placeholder="Adres 1. Satır" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <label>Adres 2. Satır</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimEN.AdresSatir2" class="form-control" placeholder="Adres 2. Satır" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mg-b-10"><i class="si si-map"></i> Footer Adres Bilgisi</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 pb-2">
+                                    <label>Adres 1. Satır</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimEN.FooterAdresSatir" class="form-control" placeholder="Adres 1. Satır" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 pb-2">
+                                    <label>Adres 2. Satır</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fe fe-type"></i></span>
+                                        </div><input asp-for="@Model.iletisimEN.FooterAdresSatir2" class="form-control" placeholder="Adres 2. Satır" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 pb-2 text-center">
+                    <div class="card card-img-holder text-default bg-color">
+                        <div class="row justify-content-end">
+
+                            <div class="col-md-4">
+                                <li ng-repeat="err in listtr" style="list-style-type:none" ng-animate="'animate'">
+                                    <div class="alert alert-solid-danger text-start">
+                                        <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        {{ err }}
+
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <button type="submit" class="btn btn-primary btn-block">Kaydet <div id="spinner-en" class="spinner-border spinner-border-sm text-secondary " style="display:none;" role="status"> <span class="visually-hidden">Loading...</span> </div></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!--end of selectedLanguage== en  -->
+    </form>
+</div><!--end of main content-->
+@section customscripts {
+    <script>
+        $(document).ready(function () {
+
+        });
+        completed = function (xhr) {
+            var res = JSON.parse(xhr.responseText)
+            if (res.Sonuc == false) {
+                var errorList = JSON.parse(res.Mesaj);
+                console.log(errorl)
+                angular.element(document.getElementById('body')).scope().errorListFunc(errorList);
+            }
+            else {
+                let toast = {
+                    title: "Success",
+                    message: "Kayıt Başarılı",
+                    status: TOAST_STATUS.SUCCESS,
+                    timeout: 700
+                }
+                Toast.create(toast);
+            }
+
+
+        };
+        var app = angular.module('myApp', ['ngAnimate']);
+        app.controller('myCtrl', function ($scope) {
+            $scope.selectedLanguage = "tr"; // Varsayılan olarak Türkçe dilini seçiyoruz
+
+            $scope.setLanguage = function (lang) {
+                $scope.selectedLanguage = lang;
+
+
+            };
+            $scope.listen = []
+            $scope.listtr = []
+
+            $scope.errorListFunc = function (erList) {
+                if ($scope.selectedLanguage == "tr") {
+                    $scope.listtr = erList;
+                }
+                if ($scope.selectedLanguage == "en") {
+                    $scope.listen = erList;
+                }
+                $scope.$apply();
+            };
+
+        });
+    </script>
+
+
+}
