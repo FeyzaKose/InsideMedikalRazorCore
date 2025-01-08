@@ -5,9 +5,9 @@ using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
-
+builder.Services.AddMemoryCache();
 builder.Services.AddDbContext<EFContext>();
-
+builder.Services.AddScoped<ILayoutDataService, LayoutDataService>();
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
         {

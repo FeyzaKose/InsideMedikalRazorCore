@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using DataLayer;
+@using Models.PageModels;
+@{
+    var dataService = ViewContext.HttpContext.RequestServices.GetService<ILayoutDataService>();
+    LayoutModel data = await dataService.GetLayout();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
    
@@ -97,8 +104,8 @@
                             <!-- information start -->
                             <div class="top-content">
                                 <ul class="top-contect">
-                                    <li><a href="#"><i class="ti-mobile"></i> (0362) 437 37 70</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> info@insidemedikal.com</a></li>
+                                    <li><a href="#"><i class="ti-mobile"></i> @data.Iletisim.Telefon1</a></li>
+                                    <li><a href="#"><i class="ti-email"></i> @data.Iletisim.Email1</a></li>
                                 </ul>
                             </div>
                             <!-- information end -->

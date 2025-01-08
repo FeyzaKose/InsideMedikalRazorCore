@@ -6,7 +6,7 @@ namespace AdaKurumsal.Tools
 {
     public class Kit
     {
-        public static string getLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
         public static bool ToBoolen(string str)
         {
             if (str == "True" || str == "true" || str == "1")
@@ -18,23 +18,11 @@ namespace AdaKurumsal.Tools
                 return false;
             }
         }
-        //public static string getLanguage()
-        //{
-        //    string language = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
-        //    if (language == "tr")
-        //    {
-        //        return 1;
-        //    }
-        //    else if (language == "en")
-        //    {
-        //        return 2;
-        //    }
-        //    else
-        //    {
-        //        return 0;
-        //    }
+        public static string getLanguage()
+        {
+            return CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
-        //}
+        }
         public static string convertEnglish(string str)
         {
             str = str.Replace("ı", "i")
