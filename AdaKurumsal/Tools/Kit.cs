@@ -18,7 +18,7 @@ namespace AdaKurumsal.Tools
                 return false;
             }
         }
-        public static string getLanguage()
+        public static string GetLanguage()
         {
             return CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 

@@ -1,95 +1,94 @@
-﻿@using DataLayer;
-@using Models.PageModels;
+﻿@using AdaKurumsal.DataLayer
+@inject ILayoutDataService LayoutService
 @{
-    var dataService = ViewContext.HttpContext.RequestServices.GetService<ILayoutDataService>();
-    LayoutModel data = await dataService.GetLayout();
-}
+    var data = await LayoutService.GetLayout();
 
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- title -->
-        <title>Inside Medikal</title>
-        <meta name="description" content="" />
-        <meta name="keywords" content="" />
-        <meta name="author" content="Feyza Köse - Tasarım Balonu - https://tasarimbalonu.com">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- favicon -->
-        <link rel="shortcut icon" type="image/favicon" href="~/img/favicon.png">
-        <!-- bootstrap -->
-        <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
 
-        <link href="~/assets/libs/toastr/toastr.min.css" rel="stylesheet" />
-        <!-- simple-line icon -->
-        <link rel="stylesheet" type="text/css" href="~/css/simple-line-icons.css">
-        <!-- font-awesome icon -->
-        <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css">
-        <!-- themify icon -->
-        <link rel="stylesheet" type="text/css" href="~/css/themify-icons.css">
-        <!-- ion icon -->
-        <link rel="stylesheet" type="text/css" href="~/css/ionicons.min.css">
-        <!-- owl slider -->
-        <link rel="stylesheet" type="text/css" href="~/css/owl.carousel.min.css">
-        <link rel="stylesheet" type="text/css" href="~/css/owl.theme.default.min.css">
-        <!-- swiper -->
-        <link rel="stylesheet" type="text/css" href="~/css/swiper.min.css">
-        <!-- animation -->
-        <link rel="stylesheet" type="text/css" href="~/css/animate.css">
-        <!-- style -->
-        <link href="~/css/style.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="~/css/style4.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- title -->
+    <title>Inside Medikal</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Feyza Köse - Tasarım Balonu - https://tasarimbalonu.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/favicon" href="~/img/favicon.png">
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
 
-        <link rel="stylesheet" type="text/css" href="~/css/responsive4.css">
-        <link href="~/css/custom.css" rel="stylesheet" />
-        <link href="~/css/loader.css" rel="stylesheet" />
-        @RenderSection("styles", false)
-        <style>
-            @@media(max-width: 991px) {
-                .grid-4-product .grid-pro ul.grid-product li.grid-items {
-                    width: calc(50% - 30px);
-                    margin-left: 30px;
+    <link href="~/assets/libs/toastr/toastr.min.css" rel="stylesheet" />
+    <!-- simple-line icon -->
+    <link rel="stylesheet" type="text/css" href="~/css/simple-line-icons.css">
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.min.css">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="~/css/themify-icons.css">
+    <!-- ion icon -->
+    <link rel="stylesheet" type="text/css" href="~/css/ionicons.min.css">
+    <!-- owl slider -->
+    <link rel="stylesheet" type="text/css" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/owl.theme.default.min.css">
+    <!-- swiper -->
+    <link rel="stylesheet" type="text/css" href="~/css/swiper.min.css">
+    <!-- animation -->
+    <link rel="stylesheet" type="text/css" href="~/css/animate.css">
+    <!-- style -->
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/css/style4.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/responsive4.css">
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <link href="~/css/loader.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+    <style>
+        @@media(max-width: 991px) {
+            .grid-4-product .grid-pro ul.grid-product li.grid-items {
+                width: calc(50% - 30px);
+                margin-left: 30px;
+                margin-bottom: 15px;
+            }
+
+                .grid-4-product .grid-pro ul.grid-product li.grid-items .pro-price {
                     margin-bottom: 15px;
                 }
 
-                    .grid-4-product .grid-pro ul.grid-product li.grid-items .pro-price {
-                        margin-bottom: 15px;
-                    }
+                .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img a {
+                    text-align: center;
+                }
 
-                    .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img a {
-                        text-align: center;
-                    }
+                .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img img {
+                    margin: 0 auto;
+                }
+        }
 
-                    .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img img {
-                        margin: 0 auto;
-                    }
+        @@media(max-width: 767px) {
+            .grid-4-product .grid-pro ul.grid-product li.grid-items {
+                width: 100%;
+                margin-left: 0px;
+                margin-bottom: 15px;
             }
 
-            @@media(max-width: 767px) {
-                .grid-4-product .grid-pro ul.grid-product li.grid-items {
-                    width: 100%;
-                    margin-left: 0px;
+                .grid-4-product .grid-pro ul.grid-product li.grid-items .pro-price {
                     margin-bottom: 15px;
                 }
 
-                    .grid-4-product .grid-pro ul.grid-product li.grid-items .pro-price {
-                        margin-bottom: 15px;
-                    }
+                .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img a {
+                    text-align: center;
+                }
 
-                    .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img a {
-                        text-align: center;
-                    }
-
-                    .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img img {
-                        margin: 0 auto;
-                    }
-            }
-        </style>
-        @RenderSection("googleScripts", false);
-    </head>
+                .grid-4-product .grid-pro ul.grid-product li.grid-items .tr-pro-img img {
+                    margin: 0 auto;
+                }
+        }
+    </style>
+    @RenderSection("googleScripts", false);
+</head>
 
 <body>
     <div class="loading" id="loading" style="display:none">Loading&#8230;</div>
@@ -113,7 +112,7 @@
                         <li class="top-home-li">
                             <ul class="top-dropdown">
                                 <li class="top-dropdown-li notification-title">
-                                   
+
                                     <a href="/@Localizer["dil"]/@Localizer["hakkimizdaLink"]">@Localizer["hakkimizda"]</a>
                                 </li>
                                 <li class="top-dropdown-li notification-title">
@@ -121,7 +120,7 @@
                                     <a href="#">@Localizer["bayilerimiz"]</a>
                                 </li>
                                 <li class="top-dropdown-li notification-title">
-                                  @*   <a href="~/@LanguageHandler.getLanguage()/@Kit.convertLink(WebUI.Resource.menu.Iletisim)">@WebUI.Resource.menu.Iletisim</a> *@
+                                    @*   <a href="~/@LanguageHandler.getLanguage()/@Kit.convertLink(WebUI.Resource.menu.Iletisim)">@WebUI.Resource.menu.Iletisim</a> *@
                                     <a href="#">@Localizer["iletisim"]</a>
                                 </li>
                                 <li class="top-dropdown-li notification-title"><a href="~/yonetim">Yönetim</a></li>
@@ -145,9 +144,9 @@
         </div>
     </section>
     <!-- top notificationbr start -->
+    @RenderBody()
 
-            @RenderBody()
-      
-    
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/pages/layout.js"></script>
 </body>
 </html>

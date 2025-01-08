@@ -6,6 +6,7 @@ using System.Globalization;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
 builder.Services.AddMemoryCache();
+builder.Services.AddSignalR();
 builder.Services.AddDbContext<EFContext>();
 builder.Services.AddScoped<ILayoutDataService, LayoutDataService>();
 // Add services to the container.
@@ -29,6 +30,8 @@ builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", opt
 });
 var app = builder.Build();
 
+
+app.MapHub<LayoutHub>("/layoutHub");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

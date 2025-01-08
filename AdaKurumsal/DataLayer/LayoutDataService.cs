@@ -1,5 +1,4 @@
-﻿using AdaKurumsal.Models.DataModels;
-using AdaKurumsal.Models.PageModels;
+﻿using AdaKurumsal.Models.PageModels;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -8,7 +7,17 @@ namespace AdaKurumsal.DataLayer
 {
     public class LayoutHub : Hub
     {
+        private readonly ILayoutDataService _layoutService;
 
+        public LayoutHub(ILayoutDataService layoutService)
+        {
+            _layoutService = layoutService;
+        }
+
+        public async Task RefreshLayout()
+        {
+            await Clients.All.SendAsync("LayoutUpdated");
+        }
     }
     public class LayoutDataService : ILayoutDataService
     {
@@ -16,7 +25,7 @@ namespace AdaKurumsal.DataLayer
         private readonly IMemoryCache _memoryCache;
         private readonly ILogger<LayoutDataService> _logger;
         private readonly IHubContext<LayoutHub> _hubContext;
-        private const string CACHE_KEY_PREFIX = "Layout_";
+        private const string CACHE_KEY = "Layout_";
         public LayoutDataService(EFContext context, IMemoryCache memoryCache, ILogger<LayoutDataService> logger)
         {
             _context = context;
@@ -25,38 +34,36 @@ namespace AdaKurumsal.DataLayer
         }
         public async Task<LayoutModel> GetLayout()
         {
-            string dil = Tools.Kit.getLanguage();
-            if (string.IsNullOrEmpty(dil))
+            var currentLanguage = Tools.Kit.GetLanguage();
+
+            // Cache'den kontrol et
+            if (_memoryCache.TryGetValue<LayoutModel>(CACHE_KEY, out var cachedLayout))
             {
-                throw new ArgumentNullException(nameof(dil));
+                return cachedLayout;
             }
 
-            try
+            // Cache'de yoksa yeni veri oluştur
+            var layout = new LayoutModel
             {
-                string cacheKey = $"{CACHE_KEY_PREFIX}{dil}";
+                Iletisim = await _context.Iletisim
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(x => x.Dil == currentLanguage)
+            };
 
-                return await _memoryCache.GetOrCreateAsync(cacheKey, async entry =>
-                {
-                    entry.SlidingExpiration = TimeSpan.FromMinutes(5);
+            // Cache'e kaydet
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetSlidingExpiration(TimeSpan.FromMinutes(5));
 
-                    LayoutModel layout = new LayoutModel();
-                    layout.Iletisim = await _context.Iletisim.FirstOrDefaultAsync(x => x.Dil == dil) ?? new Iletisim();
+            _memoryCache.Set(CACHE_KEY, layout, cacheOptions);
 
-                    if (layout.Iletisim == null)
-                    {
-                        _logger.LogWarning($"İletişim bilgisi bulunamadı. Dil: {dil}");
-                    }
-
-                    return layout;
-                });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Layout bilgisi alınırken hata oluştu. Dil: {dil}");
-                throw;
-            }
+            return layout;
         }
 
-
+        // Cache'i temizle ve diğer kullanıcıları bilgilendir
+        public async Task RefreshLayout()
+        {
+            _memoryCache.Remove(CACHE_KEY);
+            await _hubContext.Clients.All.SendAsync("LayoutUpdated");
+        }
     }
 }
