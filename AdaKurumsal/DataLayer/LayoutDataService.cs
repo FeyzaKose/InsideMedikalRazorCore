@@ -7,37 +7,35 @@ namespace AdaKurumsal.DataLayer
 {
     public class LayoutHub : Hub
     {
-        private readonly ILayoutDataService _layoutService;
-
-        public LayoutHub(ILayoutDataService layoutService)
+        public async Task JoinLanguageGroup(string language)
         {
-            _layoutService = layoutService;
+            await Groups.AddToGroupAsync(Context.ConnectionId, language);
         }
 
-        public async Task RefreshLayout()
+        public async Task LeaveLanguageGroup(string language)
         {
-            await Clients.All.SendAsync("LayoutUpdated");
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, language);
         }
     }
     public class LayoutDataService : ILayoutDataService
     {
         private readonly EFContext _context;
         private readonly IMemoryCache _memoryCache;
-        private readonly ILogger<LayoutDataService> _logger;
         private readonly IHubContext<LayoutHub> _hubContext;
-        private const string CACHE_KEY = "Layout_";
-        public LayoutDataService(EFContext context, IMemoryCache memoryCache, ILogger<LayoutDataService> logger)
+        private const string CACHE_KEY_PREFIX = "Layout_";
+        public LayoutDataService(EFContext context, IMemoryCache memoryCache, IHubContext<LayoutHub> hubContext)
         {
             _context = context;
             _memoryCache = memoryCache;
-            _logger = logger;
+            _hubContext = hubContext;
         }
         public async Task<LayoutModel> GetLayout()
         {
             var currentLanguage = Tools.Kit.GetLanguage();
+            string cacheKey = $"{CACHE_KEY_PREFIX}{currentLanguage}"; // Dile özel cache key
 
             // Cache'den kontrol et
-            if (_memoryCache.TryGetValue<LayoutModel>(CACHE_KEY, out var cachedLayout))
+            if (_memoryCache.TryGetValue<LayoutModel>(cacheKey, out var cachedLayout))
             {
                 return cachedLayout;
             }
@@ -54,16 +52,47 @@ namespace AdaKurumsal.DataLayer
             var cacheOptions = new MemoryCacheEntryOptions()
                 .SetSlidingExpiration(TimeSpan.FromMinutes(5));
 
-            _memoryCache.Set(CACHE_KEY, layout, cacheOptions);
+            _memoryCache.Set(cacheKey, layout, cacheOptions);
 
             return layout;
         }
 
+
+
         // Cache'i temizle ve diğer kullanıcıları bilgilendir
-        public async Task RefreshLayout()
+        public async Task RefreshLayout(string language = null)
         {
-            _memoryCache.Remove(CACHE_KEY);
-            await _hubContext.Clients.All.SendAsync("LayoutUpdated");
+            if (language != null)
+            {
+                // Sadece belirtilen dilin cache'ini temizle
+                string cacheKey = $"{CACHE_KEY_PREFIX}{language}";
+                _memoryCache.Remove(cacheKey);
+
+                // SignalR ile sadece o dildeki kullanıcılara bildirim gönder
+                await _hubContext.Clients.Group(language).SendAsync("LayoutUpdated", new
+                {
+                    Language = language,
+                    UpdatedAt = DateTime.UtcNow,
+                    UpdatedBy = "Admin"
+                });
+            }
+            else
+            {
+                // Tüm dillerin cache'ini temizle
+                foreach (var lang in new[] { "tr", "en" })
+                {
+                    string cacheKey = $"{CACHE_KEY_PREFIX}{lang}";
+                    _memoryCache.Remove(cacheKey);
+                }
+
+                // Tüm kullanıcılara bildirim gönder
+                await _hubContext.Clients.All.SendAsync("LayoutUpdated", new
+                {
+                    Language = "all",
+                    UpdatedAt = DateTime.UtcNow,
+                    UpdatedBy = "Admin"
+                });
+            }
         }
     }
 }

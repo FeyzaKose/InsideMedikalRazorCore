@@ -18,16 +18,18 @@ namespace AdaKurumsal.Pages.Admin.IletisimInfo
         [BindProperty]
         public string dil { get; set; }
 
-        EFContext context;
+        private readonly EFContext _context;
+        private readonly ILayoutDataService _layoutService;
 
-        public IletisimModel(EFContext _context)
+        public IletisimModel(EFContext context, ILayoutDataService layoutService)
         {
-            context = _context;
+            _context = context;
+            _layoutService = layoutService;
         }
         public void OnGet()
         {
-            iletisimTR = context.Iletisim.FirstOrDefault(x => x.Dil == "tr");
-            iletisimEN = context.Iletisim.FirstOrDefault(x => x.Dil == "en");
+            iletisimTR = _context.Iletisim.FirstOrDefault(x => x.Dil == "tr");
+            iletisimEN = _context.Iletisim.FirstOrDefault(x => x.Dil == "en");
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -45,14 +47,17 @@ namespace AdaKurumsal.Pages.Admin.IletisimInfo
             }
             if (dil == "tr")
             {
-                context.Iletisim.Update(iletisimTR);
-                context.SaveChanges();
+                _context.Iletisim.Update(iletisimTR);
+                _context.SaveChanges();
+
             }
             else
             {
-                context.Iletisim.Update(iletisimEN);
-                context.SaveChanges();
+                _context.Iletisim.Update(iletisimEN);
+                _context.SaveChanges();
+
             }
+            await _layoutService.RefreshLayout(dil);
             resp.Sonuc = true;
             return Content(JsonConvert.SerializeObject(resp));
         }
