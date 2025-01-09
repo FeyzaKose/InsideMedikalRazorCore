@@ -28,8 +28,8 @@ namespace AdaKurumsal.Pages.Admin.IletisimInfo
         }
         public void OnGet()
         {
-            iletisimTR = _context.Iletisim.FirstOrDefault(x => x.Dil == "tr");
-            iletisimEN = _context.Iletisim.FirstOrDefault(x => x.Dil == "en");
+            iletisimTR = _context.Iletisim.FirstOrDefault(x => x.Language == "tr");
+            iletisimEN = _context.Iletisim.FirstOrDefault(x => x.Language == "en");
         }
 
         public async Task<IActionResult> OnPostAsync()

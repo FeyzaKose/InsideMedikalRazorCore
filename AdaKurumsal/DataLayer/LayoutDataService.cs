@@ -45,7 +45,7 @@ namespace AdaKurumsal.DataLayer
             {
                 Iletisim = await _context.Iletisim
                     .AsNoTracking()
-                    .FirstOrDefaultAsync(x => x.Dil == currentLanguage)
+                    .FirstOrDefaultAsync(x => x.Language == currentLanguage)
             };
 
             // Cache'e kaydet

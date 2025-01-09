@@ -1,7 +1,9 @@
 ﻿@using AdaKurumsal.DataLayer
 @inject ILayoutDataService LayoutService
+@using System.Globalization
 @{
     var data = await LayoutService.GetLayout();
+    var currentCulture = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
 }
 <!DOCTYPE html>
@@ -127,7 +129,7 @@
 
                                 <!-- currency start -->
                                 <li class="top-dropdown-li">
-                                    <a href="javascript:void(0)">Dil</a>
+                                    <a href="javascript:void(0)">@currentCulture.ToUpper()</a>
                                     <i class="ion-ios-arrow-down"></i>
                                     <ul class="currency">
                                         <li><a href="/Lang?culture=tr">TR</a></li>
@@ -144,6 +146,222 @@
         </div>
     </section>
     <!-- top notificationbr start -->
+    <!-- header start -->
+    <header class="header-area">
+        <div class="header-main-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header-main">
+                            <!-- logo start -->
+                            <div class="header-element logo">
+                                <a href="~/@currentCulture">
+                                    <img src="~/Content/img/logo.png" alt="logo-image" height="64" class="img-fluid">
+                                </a>
+                            </div>
+                            <!-- logo end -->
+                            <!-- search start -->
+                            <div class="header-element header-search">
+                                @*@using (Html.BeginForm("AramaSonuclari", "Site",  new { id = "aramaForm" }))
+                                {*@
+                                <form style="position:relative">
+                                    <input type="text" name="kelime" id="kelime" placeholder="@Localizer["urun_arama"]">
+                                    <button type="button" onclick="arama()" class="search-btn"><i class="fa fa-search"></i></button>
+                                    <div class="searchPreview" style="position:absolute;top:50px;background-color:#fff;">
+                                        <ul class="w-100">
+                                            @* @Html.Partial("~/Views/Site/pwSearchPreview.cshtml", new List<Urun>()) *@
+                                        </ul>
+                                    </div>
+                                </form>
+                                @*}*@
+                            </div>
+                            <!-- search end -->
+                            <!-- header icon start -->
+                            <div class="header-element right-block-box">
+                                <ul class="shop-element">
+                                    <li class="side-wrap nav-toggler">
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+                                            <span class="line"></span>
+                                        </button>
+                                    </li>
+                                    <li class="side-wrap search-wrap">
+                                        <!-- mobile search start -->
+                                        <div class="search-rap">
+                                            <a href="#search-modal" class="search-popuup" data-bs-toggle="modal"><i class="ion-ios-search-strong"></i></a>
+                                        </div>
+                                        <!-- mobile search end -->
+                                    </li>
+                                    <li class="side-wrap wishlist-wrap">
+                                        <a href="~/@currentCulture/@Localizer["teklif_iste_link"]" title="@Localizer["teklif_iste"]" class="header-wishlist btn btn-sm btn-primary" style="background-color: #0facd7; border-color: #0facd7 ">
+                                            @Localizer["teklif_iste"]
+                                        </a>
+                                    </li>
+                                    <li class="side-wrap cart-wrap">
+                                        <div class="shopping-widget">
+                                            <div class="shopping-cart">
+                                                <a href="javascript:void(0)" class="cart-count">
+                                                    <span class="cart-icon-wrap">
+                                                        <span class="cart-icon"><i class="icon-handbag"></i></span>
+                                                        <span id="cart-total" class="bigcounter">@* @sepetList.Count *@0</span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- header icon start -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- menu start  -->
+            <section class="menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="top-menu">
+                                <!-- megamenu start -->
+                                <div class="header-element megamenu-content">
+                                    <div class="mainwrap">
+                                        <ul class="main-menu">
+                                          @*   @foreach (var item in kategoriListesi)
+                                            {
+                                                if (item.id != 1 && item.id != 2)
+                                                {
+                                                    <li class="menu-link parent">
+                                                        <a href="~/@LanguageHandler.getLanguage()/@WebUI.Resource.baslik.Kategori/@item.id/@Kit.convertLink(item.Baslik.Trim())" class="link-title">
+                                                            <span class="sp-link-title">@item.Baslik</span>
+                                                            @if (item.AltKategoriListesi.Count > 0)
+                                                            {
+                                                                <i class="fa fa-angle-down"></i>
+                                                            }
+                                                        </a>
+                                                        @if (item.AltKategoriListesi.Count > 0)
+                                                        {
+                                                            <a href="#collapse-top-@item.id" data-bs-toggle="collapse" class="link-title link-title-lg">
+                                                                <span class="sp-link-title">@item.Baslik</span>
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                            <ul class="dropdown-submenu sub-menu collapse" id="collapse-top-@item.id">
+
+                                                                @foreach (var subitem in item.AltKategoriListesi)
+                                                                {
+                                                                    <li class="submenu-li">
+                                                                        <a href="~/@LanguageHandler.getLanguage()/@WebUI.Resource.baslik.Kategori/@subitem.id/@Kit.convertLink(subitem.Baslik.Trim())" class="submenu-link">@subitem.Baslik</a>
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        }
+                                                    </li>
+                                                }
+                                            } *@
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- megamenu end -->
+                                <!-- hotline start -->
+                                <div class="offer">
+                                    <a href="~/@currentCulture/@Localizer["tum_kataloglar_link"]"><i class="ti-tag"></i> @Localizer["tum_kataloglar"]</a>
+                                </div>
+                                <!-- hotline end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- menu end -->
+        </div>
+        <!-- mobile menu start -->
+        <div class="header-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="main-menu-area">
+                            <div class="main-navigation navbar-expand-xl">
+                                <div class="box-header menu-close">
+                                    <button class="close-box" type="button"><i class="ion-close-round"></i></button>
+                                </div>
+                                <div class="navbar-collapse" id="navbarContent">
+                                    <!-- main-menu start -->
+                                    <div class="megamenu-content">
+                                        <div class="mainwrap">
+                                            <ul class="main-menu">
+                                             @*    @foreach (var item in kategoriListesi)
+                                                {
+                                                    <li class="menu-link @(item.AltKategoriSayisi >0 ? "parent":"")">
+                                                        <a href="~/@LanguageHandler.getLanguage()/@WebUI.Resource.baslik.Kategori/@item.id/@Kit.convertLink(item.Baslik.Trim())" class="link-title">
+                                                            <span class="sp-link-title">@item.Baslik</span>
+                                                            @if (item.AltKategoriListesi.Count > 0)
+                                                            {
+                                                                <i class="fa fa-angle-down"></i>
+                                                            }
+                                                        </a>
+                                                        @if (item.AltKategoriListesi.Count > 0)
+                                                        {
+                                                            <a href="#collapse-home-@item.id" data-bs-toggle="collapse" class="link-title link-title-lg">
+                                                                <span class="sp-link-title">@item.Baslik</span>
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                            <ul class="dropdown-submenu sub-menu collapse" id="collapse-home-@item.id">
+
+                                                                @foreach (var subitem in item.AltKategoriListesi)
+                                                                {
+                                                                    <li class="submenu-li">
+                                                                        <a href="~/@LanguageHandler.getLanguage()/@WebUI.Resource.baslik.Kategori/@subitem.id/@Kit.convertLink(subitem.Baslik.Trim())" class="submenu-link">@subitem.Baslik</a>
+                                                                    </li>
+                                                                }
+
+                                                            </ul>
+                                                        }
+                                                    </li>
+
+                                                } *@
+
+                                                <li class="menu-link"><a class="link-title" href="~/@currentCulture/@Localizer["tum_kataloglar_link"]">@Localizer["tum_kataloglar"]</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- main-menu end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- mobile menu end -->
+        <!-- minicart start -->
+        <div class="mini-cart" id="sepetModal">
+           @*  @Html.Partial("~/Views/Site/pwSepetModal.cshtml") *@
+        </div>
+        <!-- minicart end -->
+        <!-- search start -->
+        <div class="modal fade" id="search-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="search-content">
+                                        <div class="search-engine">
+                                            <input type="text" name="search" placeholder="@Localizer["urun_arama"]">
+                                            <button class="search-btn" type="button"><i class="ion-ios-search-strong"></i></button>
+                                        </div>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><i class="ion-close-round"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- search end -->
+    </header>
+    <!-- header end -->
     @RenderBody()
 
     <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>

@@ -6,11 +6,6 @@ namespace AdaKurumsal.Models.DataModels
     [Table("Iletisim")]
     public class Iletisim : BaseModel
     {
-        [MaxLength(4, ErrorMessage = "Dil alanı en fazla 4 karakter olabilir.")]
-        public string Dil { get; set; }
-
-
-
         [MaxLength(20, ErrorMessage = "1. Telefon alanı en fazla 20 karakter olabilir.")]
         public string? Telefon1 { get; set; }
 

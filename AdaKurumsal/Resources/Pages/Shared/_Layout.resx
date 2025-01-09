@@ -132,4 +132,19 @@
   <data name="iletisim" xml:space="preserve">
     <value>İletişim</value>
   </data>
+  <data name="teklif_iste" xml:space="preserve">
+    <value>Teklif İste</value>
+  </data>
+  <data name="teklif_iste_link" xml:space="preserve">
+    <value>teklif-formu</value>
+  </data>
+  <data name="tum_kataloglar" xml:space="preserve">
+    <value>Tüm Kataloglar</value>
+  </data>
+  <data name="tum_kataloglar_link" xml:space="preserve">
+    <value>tum-kataloglar</value>
+  </data>
+  <data name="urun_arama" xml:space="preserve">
+    <value>Ürün Arama</value>
+  </data>
 </root>

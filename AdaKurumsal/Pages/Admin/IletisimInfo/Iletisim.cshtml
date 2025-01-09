@@ -52,7 +52,7 @@
         <input type="hidden" asp-for="@Model.dil" value="{{selectedLanguage}}" />
         <div ng-show="selectedLanguage === 'tr'">
             <input type="hidden" asp-for="@Model.iletisimTR.Id" />
-            <input type="hidden" asp-for="@Model.iletisimTR.Dil" />
+            <input type="hidden" asp-for="@Model.iletisimTR.Language" />
 
             <div class="row row-cards">
                 <div class="col-md-6">
@@ -191,9 +191,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-white">
-                            <div class="float-end">
-                                <button type="submit" class="btn btn-primary btn-lg">Kaydet <div id="spinner-tr" class="spinner-border spinner-border-sm text-secondary " style="display:none;" role="status"> <span class="visually-hidden">Loading...</span> </div></button>
-                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Kaydet <div id="spinner-tr" class="spinner-border spinner-border-sm text-secondary " style="display:none;" role="status"> <span class="visually-hidden">Loading...</span> </div></button>
                         </div>
                     </div>
                    
@@ -202,7 +200,7 @@
         </div> <!--end of selectedLanguage==tr  -->
         <div ng-show="selectedLanguage === 'en'">
             <input type="hidden" asp-for="@Model.iletisimEN.Id" />
-            <input type="hidden" asp-for="@Model.iletisimEN.Dil" />
+            <input type="hidden" asp-for="@Model.iletisimEN.Language" />
 
             <div class="row row-cards">
                 <div class="col-md-6">

@@ -132,4 +132,19 @@
   <data name="iletisim" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="teklif_iste" xml:space="preserve">
+    <value>Request an offer</value>
+  </data>
+  <data name="teklif_iste_link" xml:space="preserve">
+    <value>proposal-form</value>
+  </data>
+  <data name="tum_kataloglar" xml:space="preserve">
+    <value>All Catalogs</value>
+  </data>
+  <data name="tum_kataloglar_link" xml:space="preserve">
+    <value>all-catalogs</value>
+  </data>
+  <data name="urun_arama" xml:space="preserve">
+    <value>Search Product</value>
+  </data>
 </root>
