@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace AdaKurumsal.Models
 {
     [Table("AppUsers")]
-    public class AppUser : BaseModel
+    public class AppUser
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Kullanıcı adı boş bırakılamaz")]
         [MaxLength(50, ErrorMessage = "Name alanı en fazla 50 karakter olabilir.")]
         public string UserName { get; set; }

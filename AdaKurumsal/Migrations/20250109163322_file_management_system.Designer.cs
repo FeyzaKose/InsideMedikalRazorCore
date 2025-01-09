@@ -4,6 +4,7 @@ using AdaKurumsal.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdaKurumsal.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20250109163322_file_management_system")]
+    partial class file_management_system
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,7 +98,7 @@ namespace AdaKurumsal.Migrations
                         {
                             Id = 1,
                             Email = "kose.feyza@gmail.com",
-                            Password = "$2a$11$pCljfHguvQjuReVN7f4UE.vXhZKZThxHZgxE7aIVwen/fH283LlZy",
+                            Password = "$2a$11$5UxpFWlXzP.04GPce5yrY.ubD2e91dEctJ6F9Mj4lMlFILFrb5gdy",
                             UserName = "Feyza Köse",
                             isActive = true,
                             isConfirm = true
@@ -214,6 +217,7 @@ namespace AdaKurumsal.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("UpdatedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")

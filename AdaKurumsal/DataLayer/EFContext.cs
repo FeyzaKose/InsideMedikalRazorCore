@@ -1,5 +1,6 @@
 ﻿using AdaKurumsal.Models;
 using AdaKurumsal.Models.DataModels;
+using AdaKurumsal.Models.FileManagement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -16,6 +17,8 @@ namespace AdaKurumsal.DataLayer
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
 
+        public DbSet<Folder> Folders { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         public DbSet<Iletisim> Iletisim { get; set; }
 
