@@ -4,6 +4,7 @@ using AdaKurumsal.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdaKurumsal.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20250114061617_remove-category")]
+    partial class removecategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,7 +98,7 @@ namespace AdaKurumsal.Migrations
                         {
                             Id = 1,
                             Email = "kose.feyza@gmail.com",
-                            Password = "$2a$11$eiGAbwlElSWksebI63TwSu/L90NWiffYVe4dlGnTyPJwCj/Dfz4Le",
+                            Password = "$2a$11$QnPXcU3/yjGO8lgKGLh0PesFsj.5YeF7hUlwaw29UiFgvTzfJ0UHG",
                             UserName = "Feyza Köse",
                             isActive = true,
                             isConfirm = true
@@ -131,46 +134,6 @@ namespace AdaKurumsal.Migrations
                             UserId = 1,
                             isActive = true
                         });
-                });
-
-            modelBuilder.Entity("AdaKurumsal.Models.DataModels.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
-
-                    b.Property<string>("MainCategoryCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MainCategoryCode");
-
-                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("AdaKurumsal.Models.DataModels.Iletisim", b =>
@@ -310,18 +273,6 @@ namespace AdaKurumsal.Migrations
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("AdaKurumsal.Models.DataModels.Category", b =>
-                {
-                    b.HasOne("AdaKurumsal.Models.DataModels.Category", "ParentCategory")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("MainCategoryCode")
-                        .HasPrincipalKey("Code")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ParentCategory");
-                });
-
             modelBuilder.Entity("AdaKurumsal.Models.FileManagement.Folder", b =>
                 {
                     b.HasOne("AdaKurumsal.Models.FileManagement.Folder", "ParentFolder")
@@ -338,11 +289,6 @@ namespace AdaKurumsal.Migrations
                         .HasForeignKey("FolderId");
 
                     b.Navigation("Folder");
-                });
-
-            modelBuilder.Entity("AdaKurumsal.Models.DataModels.Category", b =>
-                {
-                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("AdaKurumsal.Models.FileManagement.Folder", b =>

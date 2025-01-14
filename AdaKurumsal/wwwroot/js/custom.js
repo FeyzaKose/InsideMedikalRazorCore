@@ -2334,3 +2334,39 @@ $('#kelime').on('change keyup', function () {
         $('.searchPreview').css('display', 'none');
     }
 });
+
+const connection = new signalR.HubConnectionBuilder()
+    .withUrl("/adaKurumsalHub")
+    .build();
+
+connection.on("CacheUpdated", function (message) {
+    console.log("Cache updated:", message);
+    if (message.ModelName === "Category") {
+        // Category modeli için güncelleme iþlemleri
+        console.log("Category cache updated");
+        // Kategori güncelleme iþlemleri
+    } else if (message.ModelName === "Product") {
+        // Product modeli için güncelleme iþlemleri
+        console.log("Product cache updated");
+        // Ürün güncelleme iþlemleri
+    }
+    // Diðer modeller için ek iþlemler
+});
+
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+});
+
+// Dile göre gruba katýlma
+function joinLanguageGroup(language) {
+    connection.invoke("JoinLanguageGroup", language).catch(function (err) {
+        return console.error(err.toString());
+    });
+}
+
+// Grubu terk etme
+function leaveLanguageGroup(language) {
+    connection.invoke("LeaveLanguageGroup", language).catch(function (err) {
+        return console.error(err.toString());
+    });
+}

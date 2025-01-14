@@ -19,17 +19,21 @@ namespace AdaKurumsal.Pages.Admin.IletisimInfo
         public string dil { get; set; }
 
         private readonly EFContext _context;
-        private readonly ILayoutDataService _layoutService;
+        private readonly IIletisimDataService _iletisimDataService;
+        private readonly CacheManager _cacheManager;
 
-        public IletisimModel(EFContext context, ILayoutDataService layoutService)
+        public IletisimModel(EFContext context, IIletisimDataService iletisimDataService, CacheManager cacheManager)
         {
             _context = context;
-            _layoutService = layoutService;
+            _iletisimDataService = iletisimDataService;
+            _cacheManager = cacheManager;
         }
-        public void OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
-            iletisimTR = _context.Iletisim.FirstOrDefault(x => x.Language == "tr");
-            iletisimEN = _context.Iletisim.FirstOrDefault(x => x.Language == "en");
+            iletisimTR = await _iletisimDataService.GetIletisim("tr");
+            iletisimEN = await _iletisimDataService.GetIletisim("en");
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -47,17 +51,16 @@ namespace AdaKurumsal.Pages.Admin.IletisimInfo
             }
             if (dil == "tr")
             {
-                _context.Iletisim.Update(iletisimTR);
-                _context.SaveChanges();
+                await _iletisimDataService.UpdateIletisim(iletisimTR);
+                await _cacheManager.RefreshCacheAsync(Tools.CachePrefixes.LAYOUT_CACHE_KEY_PREFIX + "tr");
+
 
             }
             else
             {
-                _context.Iletisim.Update(iletisimEN);
-                _context.SaveChanges();
-
+                await _iletisimDataService.UpdateIletisim(iletisimEN);
+                await _cacheManager.RefreshCacheAsync(Tools.CachePrefixes.LAYOUT_CACHE_KEY_PREFIX + "en");
             }
-            await _layoutService.RefreshLayout(dil);
             resp.Sonuc = true;
             return Content(JsonConvert.SerializeObject(resp));
         }

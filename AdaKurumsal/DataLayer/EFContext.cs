@@ -17,10 +17,16 @@ namespace AdaKurumsal.DataLayer
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
 
+        // File Management
         public DbSet<Folder> Folders { get; set; }
         public DbSet<Image> Images { get; set; }
 
         public DbSet<Iletisim> Iletisim { get; set; }
+
+
+        // Product Management
+        public DbSet<Category> Categories { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +37,8 @@ namespace AdaKurumsal.DataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            #region Admin data Girişi
             modelBuilder.Entity<AppRole>().HasData(
                 new AppRole { Id = 1, RolName = "Developer", isActive = true },
                 new AppRole { Id = 2, RolName = "Admin", isActive = true }
@@ -51,6 +59,16 @@ namespace AdaKurumsal.DataLayer
                 RolId = 1,
                 isActive = true
             });
+
+            #endregion
+
+            #region Category Relationship
+            modelBuilder.Entity<Category>()
+            .HasMany(c => c.SubCategories)
+            .WithOne(c => c.ParentCategory)
+            .HasForeignKey(c => c.MainCategoryCode)
+            .HasPrincipalKey(c => c.Code);
+            #endregion
         }
     }
 }

@@ -1,0 +1,149 @@
+﻿@page "/yonetim/urun-yonetimi/kategoriler"
+@model AdaKurumsal.Pages.Admin.ProductManagement.CategoriesModel
+@{
+    Layout = "Admin_Layout";
+}
+<div class="breadcrumb-header justify-content-between">
+    <div>
+        <h4 class="content-title mb-2">Ürün Yönetimi</h4>
+    </div>
+    <div class="d-flex my-auto">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Kategori</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Liste</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="main-content-body">
+    <!--YeniKategori-->
+    <div class="row row-cards">
+        <div class="col-md-12">
+            <div class="card card-img-holder text-default bg-color">
+                <div class="card-header">
+                    <div class="d-flex">
+                        <div class="my-auto">
+                            <div class="circle-icon bg-primary text-center align-self-center shadow-primary"><img src="~/admin-assets/img/svgicons/circle.svg" alt="circle" class="card-img-absolute"><i class="bx bx-conversation tx-30 icon-user-bx text-white"></i></div>
+                        </div>
+                        <div class="project-content my-3">
+                            <h3 class="card-title">Kategoriler</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="panel-group1" id="accordion11">
+                        <div class="panel panel-default  mb-4">
+                            <div class="panel-heading1 bg-primary ">
+                                <h4 class="panel-title1">
+                                    <a class="accordion-toggle collapsed" data-bs-toggle="collapse" data-bs-parent="#accordion11" href="#collapseFour1" aria-expanded="false">
+                                        <i class="fe fe-arrow-right me-2  d-inline-flex"></i>{{formTitle}}
+
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour1" class="panel-collapse collapse" role="tabpanel" aria-expanded="false" style="">
+                                <div class="panel-body border">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- dil -->
+
+
+        <div class="row row-cards">
+            <div class="col-md-12">
+                <div class="card card-img-holder text-default bg-color">
+                    <div class="card-body">
+                        <nav class="nav nav-pills flex-column flex-md-row">
+                            <a class="nav-link" href="javascript:void(0);" ng-click="setLanguage('tr')" ng-class="{ 'active': selectedLanguage === 'tr' }">Türkçe</a>
+                            <a class="nav-link" href="javascript:void(0);" ng-click="setLanguage('en')" ng-class="{ 'active': selectedLanguage === 'en' }">İngilizce</a>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div><!--end of dil-->
+
+        <div class="row row-cards" ng-if="selectedLanguage === 'tr'">
+            <div class="col-md-12">
+                <div class="card card-img-holder text-default bg-color">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped card-table mt-0 mb-0 table-nowrap border ">
+                                <thead>
+                                    <tr valign="middle">
+                                        <th>Image</th>
+                                        <th>Kod</th>
+                                        <th>Başlık</th>
+                                        <th>Durum</th>
+                                        <th>Sıra</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @* @foreach (var item in Model.Categories.TR)
+                                    {
+                                        <tr valign="middle">
+                                            <td><img src="@item.Image" class="img-fluid" style="width:50px;height:50px;" /></td>
+                                            <td class="align-middle">@item.Code</td>
+                                            <td class="align-middle">@item.Title</td>
+                                            <td class="align-middle"><span data-id="@item.Id" class="durum  badge @(item.isActive ? "bg-success" :"bg-gray-300")">@(item.isActive ? "Aktif" : "Pasif")</span></td>
+                                            <td class="align-middle">@item.Order</td>
+                                            <td class="align-middle">
+                                            </td>
+                                        </tr>
+                                    } *@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    @section customscripts {
+        <script>
+            $(document).ready(function () {
+
+            });
+
+            var app = angular.module('myApp', ['ngAnimate']);
+            app.controller('myCtrl', function ($scope) {
+                $scope.selectedLanguage = "tr"; // Varsayılan olarak Türkçe dilini seçiyoruz
+
+                $scope.setLanguage = function (lang) {
+                    $scope.selectedLanguage = lang;
+                };
+
+                var parent=$scope;
+
+                parent.selectedCategory=null;
+                if(parent.selectedCategory==null)
+                {
+                    parent.formTitle="Yeni Kategori";
+                }
+                else {
+                    parent.formTitle="Kategori Güncelle";
+                }
+
+
+
+            });
+        </script>
+
+
+    }

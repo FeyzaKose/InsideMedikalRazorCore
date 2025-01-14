@@ -8,7 +8,11 @@ builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
 builder.Services.AddMemoryCache();
 builder.Services.AddSignalR();
 builder.Services.AddDbContext<EFContext>();
+
+builder.Services.AddScoped<ICacheManager, CacheManager>();
 builder.Services.AddScoped<ILayoutDataService, LayoutDataService>();
+builder.Services.AddScoped<IProductManagementDataService, ProductManagementDataService>();
+builder.Services.AddScoped<IIletisimDataService, IletisimDataService>();
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
         {
@@ -31,7 +35,7 @@ builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", opt
 var app = builder.Build();
 
 
-app.MapHub<LayoutHub>("/layoutHub");
+app.MapHub<AdaKurumsalHub>("/adaKurumsalHub");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

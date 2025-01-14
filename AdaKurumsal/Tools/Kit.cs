@@ -23,6 +23,10 @@ namespace AdaKurumsal.Tools
             return CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
         }
+        public static string[] GetSupportedCultures()
+        {
+            return new[] { "tr", "en" };
+        }
         public static string convertEnglish(string str)
         {
             str = str.Replace("ı", "i")

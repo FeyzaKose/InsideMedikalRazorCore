@@ -4,6 +4,7 @@ using AdaKurumsal.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdaKurumsal.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20250109205905_category")]
+    partial class category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,7 +98,7 @@ namespace AdaKurumsal.Migrations
                         {
                             Id = 1,
                             Email = "kose.feyza@gmail.com",
-                            Password = "$2a$11$eiGAbwlElSWksebI63TwSu/L90NWiffYVe4dlGnTyPJwCj/Dfz4Le",
+                            Password = "$2a$11$lZ7vCCEZ1dWsNWXOQuuaB.lM4v4yYbWUfMdGRu5HOzRESeO4/ZR7W",
                             UserName = "Feyza Köse",
                             isActive = true,
                             isConfirm = true
@@ -143,9 +146,10 @@ namespace AdaKurumsal.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Language")
@@ -155,20 +159,19 @@ namespace AdaKurumsal.Migrations
 
                     b.Property<string>("MainCategoryCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isActive")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MainCategoryCode");
 
                     b.ToTable("Categories");
                 });
@@ -310,18 +313,6 @@ namespace AdaKurumsal.Migrations
                     b.ToTable("Images");
                 });
 
-            modelBuilder.Entity("AdaKurumsal.Models.DataModels.Category", b =>
-                {
-                    b.HasOne("AdaKurumsal.Models.DataModels.Category", "ParentCategory")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("MainCategoryCode")
-                        .HasPrincipalKey("Code")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ParentCategory");
-                });
-
             modelBuilder.Entity("AdaKurumsal.Models.FileManagement.Folder", b =>
                 {
                     b.HasOne("AdaKurumsal.Models.FileManagement.Folder", "ParentFolder")
@@ -338,11 +329,6 @@ namespace AdaKurumsal.Migrations
                         .HasForeignKey("FolderId");
 
                     b.Navigation("Folder");
-                });
-
-            modelBuilder.Entity("AdaKurumsal.Models.DataModels.Category", b =>
-                {
-                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("AdaKurumsal.Models.FileManagement.Folder", b =>
