@@ -20,9 +20,9 @@ namespace AdaKurumsal.Pages.Admin.IletisimInfo
 
         private readonly EFContext _context;
         private readonly IIletisimDataService _iletisimDataService;
-        private readonly CacheManager _cacheManager;
+        private readonly ICacheManager _cacheManager;
 
-        public IletisimModel(EFContext context, IIletisimDataService iletisimDataService, CacheManager cacheManager)
+        public IletisimModel(EFContext context, IIletisimDataService iletisimDataService, ICacheManager cacheManager)
         {
             _context = context;
             _iletisimDataService = iletisimDataService;
@@ -52,14 +52,14 @@ namespace AdaKurumsal.Pages.Admin.IletisimInfo
             if (dil == "tr")
             {
                 await _iletisimDataService.UpdateIletisim(iletisimTR);
-                await _cacheManager.RefreshCacheAsync(Tools.CachePrefixes.LAYOUT_CACHE_KEY_PREFIX + "tr");
+                await _cacheManager.RefreshCacheAsync(Tools.CachePrefixes.LAYOUT_CACHE_KEY_PREFIX, "tr");
 
 
             }
             else
             {
                 await _iletisimDataService.UpdateIletisim(iletisimEN);
-                await _cacheManager.RefreshCacheAsync(Tools.CachePrefixes.LAYOUT_CACHE_KEY_PREFIX + "en");
+                await _cacheManager.RefreshCacheAsync(Tools.CachePrefixes.LAYOUT_CACHE_KEY_PREFIX, "en");
             }
             resp.Sonuc = true;
             return Content(JsonConvert.SerializeObject(resp));

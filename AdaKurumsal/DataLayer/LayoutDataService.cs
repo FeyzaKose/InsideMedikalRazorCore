@@ -9,11 +9,11 @@ namespace AdaKurumsal.DataLayer
 
     public class LayoutDataService : ILayoutDataService
     {
-        private readonly CacheManager _cacheManager;
+        private readonly ICacheManager _cacheManager;
         private readonly IIletisimDataService _iletisimDataService;
 
         private const string LAYOUT_CACHE_KEY_PREFIX = Tools.CachePrefixes.LAYOUT_CACHE_KEY_PREFIX;
-        public LayoutDataService(IIletisimDataService iletisimDataService, CacheManager cacheManager)
+        public LayoutDataService(IIletisimDataService iletisimDataService, ICacheManager cacheManager)
         {
             _iletisimDataService = iletisimDataService;
             _cacheManager = cacheManager;
